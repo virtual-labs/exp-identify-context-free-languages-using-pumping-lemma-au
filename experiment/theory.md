@@ -1,50 +1,60 @@
 <u><h3>Theory</h3></u>
+<h5>1.Regular Language </h5>
+<li>A language is regular if  it can be expressed in terms of regular expression </li>
+<li>They are languages that can be recognized by finite automata  </li>
+<li>Regular expressions can be thought of as the algebraic description of a regular language . </li>
+<li>Regular languages have closure properties, meaning that various operations on regular  languages (such as union, concatenation, and Kleene star) result in another regular language.
+</li>
 
-<h5>1.Context free grammar</h5>
-<p>CFG stands for context-free grammar. It is is a formal grammar which is used to generate all possible patterns of strings in a given formal language. Context-free grammar G can be defined by four tuples as:
+<h5>Pumping Lemma</h5>
+<b>Pumping:</b> The word pumping refers to generating many input strings by pushing a symbol in an input string repeatedly.
 
-V - It is the collection of variables or nonterminal symbols.
-T - It is a set of terminals. 
-P - It is the production rules that consist of both terminals and nonterminals.
-S - It is the Starting symbol.
-</p>
-<h5>Pumping lemma for context free Language</h5>
-<p>Pumping lemma for context free language (CFL) is used to prove that a language is not a Context free language</p>
-<p>Theorem </p>
-<p>If A is a context free language ,then ,A has a pumping length “p” such that any string “S’, where |S|>= p may be divided into 5 pieces S=uvxyz such that the following conditions must be true : </p>
+<b>Lemma:</b>  The word Lemma refers to the intermediate theorem in a proof.
 
-1. Uv<sup>i</sup>xy<sup>i</sup>z is in the A for every i≥0
+There are two Pumping Lemmas, that are defined for
 
-2. |vy|>0
-3. |vxy|≤p
+<li>Regular Languages</li>
+<li>Context-Free Languages</li>
+
+<h5>Pumping Lemma For Regular Languages</h5>
+<h6>Theorem: </h6>
+<p>If A is a Regular Language, then A has a Pumping Length ‘P’ such that any string ‘S’ where |S ≥ P may be divided into three parts S = xyz such that the following conditions must be true:
+
+1.) xy<sup>i</sup>z ∈ A for every i ≥ 0
+
+2.) |y| > 0
+
+3.) |xy| ≤ P</p>
+
+<p>Pumping Lemma is used as proof of the irregularity of a language. It means, that if a language is regular, it always satisfies the pumping lemma. If at least one string is made from pumping, not in language A, then A is not regular.</p>
 
 <h5>Steps to apply pumping lemma</h5>
-<li>Assume that L is context-free.</li>
-<li>The pumping length will be p.</li>
-<li>All strings longer than the length(p) can be pumped  |S|≥ p.</li>
-<li>Now we have to find a string 'S' in L such that |S|≥ p.</li>
-<li>We will divide string 'S' into uvxyz.</li>
-<li>Now show that uv<sup>i</sup>xy<sup>i</sup>z ∉L for some constant i.</li>
-<li>Then, we have to consider the ways that S can be divided into uvxyz.</li>
-<li>Show that none of these can satisfy all the 3 pumping conditions simultaneously.</li>
-<li>A string 'S' cannot be pumped (contradiction).</li>
-<br>
- <p>Detailed description of the steps mentioned above:</p>
+Step 1: Assume that Language A is Regular.
 
- <p> 1. Assume the language L is context-free: This is our starting point for the proof.</p>
- <p> 2. Identify the pumping length (p): The lemma guarantees the existence of a pumping length p for any context-free language. This p applies to all strings in the language with a length greater than or equal to p (L ≥ p).</p>
- <p>3 .Choose a string S ∈ L and |S| ≥ p: Select a string S from the language L that has a length greater than or equal to the pumping length (n).</p>
- <p>4.  Divide S into five substrings as follows:
+Step 2: It has to have a Pumping Length (say P).
 
-<li>u: The prefix before the "pumping section" (can be empty).</li>
-<li>v: The substring to be "pumped" (must have at least one symbol).</li>
-<li>x: A separator between v and y (can be empty).</li>
-<li>y: A copy of v (can be empty).</li>
-<li>z: The suffix after the "pumping section" (can be empty).</li>
-Therefore, the string w can be represented as S = uvxyz.</p>
-<p>5. Apply pumping for different values of i: The lemma states that we can "pump" the substring v by inserting copies of it i times (where i is a non-negative integer) and obtain a new string.</p>
-<p>6. Analyze the resulting strings: The key step is to analyze the resulting strings (uwxz, S, and uv<sup>i</sup>xy<sup>i</sup>z) and show that at least one of them does not belong to the language L. This contradicts the initial assumption that L is context-free.</p>
-<li>If uwxz is not in L, the language is not context-free because it cannot generate this string even though it's derived from a valid string in L.</li>
-<li>If uv<sup>i</sup>xy<sup>i</sup>z is not in L for any i ≥ 2, the language is not context-free because it cannot generate strings with more than one copy of the "pumping section" v, even though longer strings exist in the language.</li>
+Step 3: All strings longer than P can be pumped |S| ≥ P.
 
+Step 4: Now, find a string ‘S’ in A such that |S| ≥ P.
 
+Step 5: Divide S into x y z strings.
+
+Step 6: Show that xy<sup>i</sup>z ∉ A for some i.
+
+Step 7: Then consider how S can be divided into x y z.
+
+Step 8: Show that none of the above strings satisfies all three pumping conditions simultaneously.
+
+Step 9: S cannot be pumped == CONTRADICTION.
+<p>Detailed description of the steps mentioned above:</p>
+<p><b>1.  Assume the language L is regular:</b> This is the starting point for the proof</p>
+<p><b>2. Identify the pumping length (p):</b> The pumping lemma guarantees the existence of a pumping length p for any regular language. This p applies to all strings in the language with a length greater than or equal to p (L ≥ p).</p>
+<p><b>3. Choose a string S ∈ L and |S| ≥ p:</b> Select a string S from the language L that has a length greater than or equal to the pumping length (p).</p>
+<p><b>4.Divide S into three substrings:</b> Divide the chosen string S into three substrings as follows:
+
+x: A prefix of S (can be empty).
+y: The substring to be "pumped" (must have at least one symbol).
+z: The suffix of S after y (can be empty).
+Therefore, the string S can be represented as S=xyz.</p>
+<P><b>5.Apply pumping for different values of i:</b> The lemma states that we can "pump" the substring y by inserting copies of it i times </P>
+<p><b>6.Analyze the resulting strings:</b> The key step is to analyze the resulting strings (xz, s, and x(y<sup>i</sup>)z) and show that at least one of them does not belong to the language L. This contradicts the initial assumption that L is regular.</p>
