@@ -2,71 +2,71 @@
 
 #### 1. Context-Free Grammar (CFG)
 
-A **Context-Free Grammar (CFG)** is a formal grammar used to generate strings of a context-free language. A CFG is a 4-tuple  
-\[
-G = (V, \Sigma, P, S)
-\]
-where:
-- **V**: finite set of variables (nonterminals).
-- **Σ**: finite set of terminals, with \(V \cap \Sigma = \varnothing\).
-- **P**: finite set of productions of the form \(A \rightarrow \alpha\), where \(A \in V\) and \(\alpha \in (V \cup \Sigma)^*\).
-- **S**: start symbol, \(S \in V\).
+A **Context-Free Grammar (CFG)** is a formal grammar that generates strings belonging to a context-free language.  
+It is defined as a 4-tuple:
 
-A string \(w \in \Sigma^*\) is in the language \(L(G)\) if \(S \Rightarrow^* w\) (i.e., \(w\) can be derived from \(S\) using the productions).
+`G = (V, Σ, P, S)`
 
----
+where:  
+- **V** → Finite set of variables (nonterminals)  
+- **Σ** → Finite set of terminals, with `V ∩ Σ = ∅`  
+- **P** → Finite set of productions of the form `A → α`, where `A ∈ V` and `α ∈ (V ∪ Σ)*`  
+- **S** → Start symbol, `S ∈ V`  
+
+A string `w ∈ Σ*` belongs to the language `L(G)` if and only if  
+
+`S ⇒* w`  
+(i.e., `w` can be derived from `S` using the productions).
+
 
 #### 2. Pumping Lemma for Context-Free Languages (CFLs)
 
-The **pumping lemma for CFLs** is typically used to prove that a language is **not** context-free.
+The **Pumping Lemma for CFLs** is used to prove that certain languages are **not** context-free.
 
-##### Theorem (CFL Pumping Lemma)
-If \(L\) is a context-free language, then there exists a pumping length \(p \ge 1\) such that **every** string \(s \in L\) with \(|s| \ge p\) can be written as
-\[
-s = u v x y z
-\]
-satisfying:
-1. \(v y \neq \varepsilon\) (i.e., at least one of \(v\) or \(y\) is nonempty),
-2. \(|v x y| \le p\),
-3. For **all** \(i \ge 0\), the string \(u\,v^{\,i}\,x\,y^{\,i}\,z \in L\).
+**Theorem (CFL Pumping Lemma):**  
+If `L` is a context-free language, then there exists a pumping length `p ≥ 1` such that every string `s ∈ L` with `|s| ≥ p` can be written as:  
 
-> **Important fixes to common errors (Step 4 misconceptions):**
-> - \(v\) and \(y\) are **not** required to be identical or “copies” of each other.  
-> - \(x\) is **not** a special “separator”; any of \(u, x, z\) may be empty.  
-> - The only guaranteed constraints are \(v y \neq \varepsilon\) and \(|v x y| \le p\).
+`s = u v x y z`
 
----
+satisfying:  
+1. `v y ≠ ε` (at least one of `v` or `y` is nonempty),  
+2. `|v x y| ≤ p`,  
+3. For all `i ≥ 0`, the string `u v^i x y^i z ∈ L`.  
 
-#### 3. Why the Pumping Lemma Holds for CFLs (Proof Sketch)
+**Important clarifications:**  
+- `v` and `y` are not required to be identical.  
+- `x` is not a “separator”; any of `u, x, z` may be empty.  
+- Only the constraints `v y ≠ ε` and `|v x y| ≤ p` are guaranteed.  
 
-- Convert the grammar of \(L\) to **Chomsky Normal Form (CNF)**. Let the number of variables be \(k\).
-- Any parse tree deriving a sufficiently long string (\(|s| \ge p\) for some \(p\) depending on \(k\)) must contain a **long path** from the root to a leaf.
-- By the **pigeonhole principle**, some variable \(A\) repeats along that path:  
-  \(S \Rightarrow^* u A z \Rightarrow^* u v A y z \Rightarrow^* u v x y z\).
-- The portion derived by the lower occurrence of \(A\) can be “pumped”: replacing that subtree by either **more** or **fewer** copies preserves a valid derivation because \(A \Rightarrow^* x\) and \(A \Rightarrow^* v x y\).  
-  This yields \(u\,v^{\,i}\,x\,y^{\,i}\,z \in L\) for all \(i \ge 0\).
-- Structural bounds on the parse tree ensure \(|v x y| \le p\) and that \(v y\) is not empty.
 
----
 
-#### 4. How to Use the Pumping Lemma to Show \(L\) is **Not** Context-Free
+#### 3. Why the Pumping Lemma Holds (Proof Sketch)
 
-To prove a language \(L\) is **not** context-free, use a **proof by contradiction**:
+- Convert the grammar of `L` into **Chomsky Normal Form (CNF)**.  
+- Let the number of variables be `k`.  
+- Any parse tree deriving a sufficiently long string (`|s| ≥ p`) must contain a **long path** from root to leaf.  
+- By the **pigeonhole principle**, some variable `A` repeats along this path:  
 
-1. **Assume** \(L\) is context-free.  
-2. Let \(p\) be the pumping length guaranteed by the lemma.  
-3. **Choose** a specific string \(s \in L\) with \(|s| \ge p\) (choose \(s\) strategically).  
-4. **For every** valid decomposition \(s = u v x y z\) satisfying  
-   \(|v x y| \le p\) and \(v y \neq \varepsilon\),  
-   **show there exists** some \(i \ge 0\) (often \(i=0\) or \(i=2\)) such that
-   \[
-   u\,v^{\,i}\,x\,y^{\,i}\,z \notin L.
-   \]
-   This contradicts the lemma’s condition (3).  
-5. Conclude that the assumption was false, so \(L\) is **not** context-free.
+  `S ⇒* u A z ⇒* u v A y z ⇒* u v x y z`
 
-> **Notes & Pitfalls**
-> - You must handle **all** valid decompositions (the adversary chooses \(u,v,x,y,z\) after seeing your \(s\)).  
-> - The lemma is a **necessary condition**, not sufficient: some non-CFLs may accidentally satisfy a pumping-like property for certain strings; the lemma alone does not characterize all CFLs.
+- The repeated variable `A` allows **pumping**: replacing the subtree derived from the second `A` by more/fewer copies gives valid derivations.  
+- This proves `u v^i x y^i z ∈ L` for all `i ≥ 0`.  
+- The structure of the parse tree ensures that `|v x y| ≤ p` and `v y ≠ ε`.  
 
----
+
+
+#### 4. Using the Pumping Lemma to Show a Language is Not Context-Free
+
+To prove a language `L` is not context-free, proceed by **contradiction**:
+
+1. **Assume** `L` is context-free.  
+2. Let `p` be the pumping length from the lemma.  
+3. **Choose** a specific string `s ∈ L` with `|s| ≥ p`.  
+4. For **every valid decomposition** `s = u v x y z` satisfying  
+   `|v x y| ≤ p` and `v y ≠ ε`,  
+   show there exists some `i ≥ 0` (often `i = 0` or `i = 2`) such that:  
+
+   `u v^i x y^i z ∉ L`
+
+   which contradicts the lemma.  
+5. Therefore, `L` is **not** context-free.  
