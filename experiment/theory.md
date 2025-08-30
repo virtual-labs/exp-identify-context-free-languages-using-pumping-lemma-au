@@ -1,50 +1,72 @@
-<u><h3>Theory</h3></u>
+### Theory
 
-<h5>1.Context free grammar</h5>
-<p>CFG stands for context-free grammar. It is is a formal grammar which is used to generate all possible patterns of strings in a given formal language. Context-free grammar G can be defined by four tuples as:
+#### 1. Context-Free Grammar (CFG)
 
-V - It is the collection of variables or nonterminal symbols.
-T - It is a set of terminals. 
-P - It is the production rules that consist of both terminals and nonterminals.
-S - It is the Starting symbol.
-</p>
-<h5>Pumping lemma for context free Language</h5>
-<p>Pumping lemma for context free language (CFL) is used to prove that a language is not a Context free language</p>
-<p>Theorem </p>
-<p>If A is a context free language ,then ,A has a pumping length “p” such that any string “S’, where |S|>= p may be divided into 5 pieces S=uvxyz such that the following conditions must be true : </p>
+A **Context-Free Grammar (CFG)** is a formal grammar used to generate strings of a context-free language. A CFG is a 4-tuple  
+\[
+G = (V, \Sigma, P, S)
+\]
+where:
+- **V**: finite set of variables (nonterminals).
+- **Σ**: finite set of terminals, with \(V \cap \Sigma = \varnothing\).
+- **P**: finite set of productions of the form \(A \rightarrow \alpha\), where \(A \in V\) and \(\alpha \in (V \cup \Sigma)^*\).
+- **S**: start symbol, \(S \in V\).
 
-1. Uv<sup>i</sup>xy<sup>i</sup>z is in the A for every i≥0
+A string \(w \in \Sigma^*\) is in the language \(L(G)\) if \(S \Rightarrow^* w\) (i.e., \(w\) can be derived from \(S\) using the productions).
 
-2. |vy|>0
-3. |vxy|≤p
+---
 
-<h5>Steps to apply pumping lemma</h5>
-<li>Assume that L is context-free.</li>
-<li>The pumping length will be p.</li>
-<li>All strings longer than the length(p) can be pumped  |S|≥ p.</li>
-<li>Now we have to find a string 'S' in L such that |S|≥ p.</li>
-<li>We will divide string 'S' into uvxyz.</li>
-<li>Now show that uv<sup>i</sup>xy<sup>i</sup>z ∉L for some constant i.</li>
-<li>Then, we have to consider the ways that S can be divided into uvxyz.</li>
-<li>Show that none of these can satisfy all the 3 pumping conditions simultaneously.</li>
-<li>A string 'S' cannot be pumped (contradiction).</li>
-<br>
- <p>Detailed description of the steps mentioned above:</p>
+#### 2. Pumping Lemma for Context-Free Languages (CFLs)
 
- <p> 1. Assume the language L is context-free: This is our starting point for the proof.</p>
- <p> 2. Identify the pumping length (p): The lemma guarantees the existence of a pumping length p for any context-free language. This p applies to all strings in the language with a length greater than or equal to p (L ≥ p).</p>
- <p>3 .Choose a string S ∈ L and |S| ≥ p: Select a string S from the language L that has a length greater than or equal to the pumping length (n).</p>
- <p>4.  Divide S into five substrings as follows:
+The **pumping lemma for CFLs** is typically used to prove that a language is **not** context-free.
 
-<li>u: The prefix before the "pumping section" (can be empty).</li>
-<li>v: The substring to be "pumped" (must have at least one symbol).</li>
-<li>x: A separator between v and y (can be empty).</li>
-<li>y: A copy of v (can be empty).</li>
-<li>z: The suffix after the "pumping section" (can be empty).</li>
-Therefore, the string w can be represented as S = uvxyz.</p>
-<p>5. Apply pumping for different values of i: The lemma states that we can "pump" the substring v by inserting copies of it i times (where i is a non-negative integer) and obtain a new string.</p>
-<p>6. Analyze the resulting strings: The key step is to analyze the resulting strings (uwxz, S, and uv<sup>i</sup>xy<sup>i</sup>z) and show that at least one of them does not belong to the language L. This contradicts the initial assumption that L is context-free.</p>
-<li>If uwxz is not in L, the language is not context-free because it cannot generate this string even though it's derived from a valid string in L.</li>
-<li>If uv<sup>i</sup>xy<sup>i</sup>z is not in L for any i ≥ 2, the language is not context-free because it cannot generate strings with more than one copy of the "pumping section" v, even though longer strings exist in the language.</li>
+##### Theorem (CFL Pumping Lemma)
+If \(L\) is a context-free language, then there exists a pumping length \(p \ge 1\) such that **every** string \(s \in L\) with \(|s| \ge p\) can be written as
+\[
+s = u v x y z
+\]
+satisfying:
+1. \(v y \neq \varepsilon\) (i.e., at least one of \(v\) or \(y\) is nonempty),
+2. \(|v x y| \le p\),
+3. For **all** \(i \ge 0\), the string \(u\,v^{\,i}\,x\,y^{\,i}\,z \in L\).
 
+> **Important fixes to common errors (Step 4 misconceptions):**
+> - \(v\) and \(y\) are **not** required to be identical or “copies” of each other.  
+> - \(x\) is **not** a special “separator”; any of \(u, x, z\) may be empty.  
+> - The only guaranteed constraints are \(v y \neq \varepsilon\) and \(|v x y| \le p\).
 
+---
+
+#### 3. Why the Pumping Lemma Holds for CFLs (Proof Sketch)
+
+- Convert the grammar of \(L\) to **Chomsky Normal Form (CNF)**. Let the number of variables be \(k\).
+- Any parse tree deriving a sufficiently long string (\(|s| \ge p\) for some \(p\) depending on \(k\)) must contain a **long path** from the root to a leaf.
+- By the **pigeonhole principle**, some variable \(A\) repeats along that path:  
+  \(S \Rightarrow^* u A z \Rightarrow^* u v A y z \Rightarrow^* u v x y z\).
+- The portion derived by the lower occurrence of \(A\) can be “pumped”: replacing that subtree by either **more** or **fewer** copies preserves a valid derivation because \(A \Rightarrow^* x\) and \(A \Rightarrow^* v x y\).  
+  This yields \(u\,v^{\,i}\,x\,y^{\,i}\,z \in L\) for all \(i \ge 0\).
+- Structural bounds on the parse tree ensure \(|v x y| \le p\) and that \(v y\) is not empty.
+
+---
+
+#### 4. How to Use the Pumping Lemma to Show \(L\) is **Not** Context-Free
+
+To prove a language \(L\) is **not** context-free, use a **proof by contradiction**:
+
+1. **Assume** \(L\) is context-free.  
+2. Let \(p\) be the pumping length guaranteed by the lemma.  
+3. **Choose** a specific string \(s \in L\) with \(|s| \ge p\) (choose \(s\) strategically).  
+4. **For every** valid decomposition \(s = u v x y z\) satisfying  
+   \(|v x y| \le p\) and \(v y \neq \varepsilon\),  
+   **show there exists** some \(i \ge 0\) (often \(i=0\) or \(i=2\)) such that
+   \[
+   u\,v^{\,i}\,x\,y^{\,i}\,z \notin L.
+   \]
+   This contradicts the lemma’s condition (3).  
+5. Conclude that the assumption was false, so \(L\) is **not** context-free.
+
+> **Notes & Pitfalls**
+> - You must handle **all** valid decompositions (the adversary chooses \(u,v,x,y,z\) after seeing your \(s\)).  
+> - The lemma is a **necessary condition**, not sufficient: some non-CFLs may accidentally satisfy a pumping-like property for certain strings; the lemma alone does not characterize all CFLs.
+
+---
