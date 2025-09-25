@@ -2,38 +2,106 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What is the primary use of the Pumping Lemma for context-free languages?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "To prove that some languages are not context-free.",
+        "b": "To minimize context-free grammars.",
+        "c": "To generate new context-free grammars.",
+        "d": "To determine closure properties of CFLs."
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Correct! The Pumping Lemma is a tool used to prove that certain languages are not context-free.",
+        "b": "Incorrect. Minimization is not the purpose of the Pumping Lemma.",
+        "c": "Incorrect. The lemma is not about generating grammars.",
+        "d": "Incorrect. Closure properties are studied separately."
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which type of languages does the Pumping Lemma for CFLs specifically apply to?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "All formal languages.",
+        "b": "Only regular languages.",
+        "c": "Context-free languages.",
+        "d": "Context-sensitive languages."
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. The lemma is not universal to all formal languages.",
+        "b": "Incorrect. Regular languages have their own Pumping Lemma.",
+        "c": "Correct! This Pumping Lemma applies to context-free languages.",
+        "d": "Incorrect. It does not apply to context-sensitive languages."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "When applying the Pumping Lemma for CFLs, a string S is divided into five parts: S = uvxyz. Which condition must always hold?",
+      "answers": {
+        "a": "|vy| > 0",
+        "b": "|vxy| ≤ p",
+        "c": "u and z must always be empty",
+        "d": "v and y must be identical substrings"
+      },
+      "explanations": {
+        "a": "Correct! At least one of v or y must be non-empty so that 'pumping' has an effect.",
+        "b": "Correct! Another key condition is that the middle portion vxy has length at most p.",
+        "c": "Incorrect. u and z can be empty or non-empty.",
+        "d": "Incorrect. v and y are not required to be identical."
+      },
+      "correctAnswer": ["a", "b"],
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does 'pumping' a string in the context of the Pumping Lemma mean?",
+      "answers": {
+        "a": "Repeating the substrings v and y any number of times while keeping u, x, and z fixed.",
+        "b": "Generating new productions in the grammar.",
+        "c": "Replacing all terminals with variables.",
+        "d": "Eliminating ambiguity in derivations."
+      },
+      "explanations": {
+        "a": "Correct! Pumping means repeating (or removing) the parts v and y while keeping the rest unchanged.",
+        "b": "Incorrect. Pumping does not add productions.",
+        "c": "Incorrect. This refers to grammar transformations, not pumping.",
+        "d": "Incorrect. Pumping Lemma does not address ambiguity."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following languages can be proven NOT to be context-free using the Pumping Lemma?",
+      "answers": {
+        "a": "{ a^n b^n c^n | n ≥ 0 }",
+        "b": "{ a^n b^n | n ≥ 0 }",
+        "c": "{ a^i b^j | i, j ≥ 0 }",
+        "d": "{ ww^R | w ∈ {a, b}* }"
+      },
+      "explanations": {
+        "a": "Correct! The language a^n b^n c^n is not context-free and can be proven so using the Pumping Lemma.",
+        "b": "Incorrect. a^n b^n is context-free.",
+        "c": "Incorrect. a^i b^j is context-free (regular in fact).",
+        "d": "Correct! The language ww^R is not context-free and can also be shown using the Pumping Lemma."
+      },
+      "correctAnswer": ["a", "d"],
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What limitation of the Pumping Lemma should be kept in mind when using it?",
+      "answers": {
+        "a": "It can only prove that a language is not context-free, not that it is context-free.",
+        "b": "It always requires a deterministic grammar.",
+        "c": "It applies only to finite languages.",
+        "d": "It guarantees closure properties of CFLs."
+      },
+      "explanations": {
+        "a": "Correct! The Pumping Lemma is a negative test — it can prove non-context-freeness but cannot prove context-freeness.",
+        "b": "Incorrect. Determinism is not a requirement.",
+        "c": "Incorrect. It does not apply only to finite languages.",
+        "d": "Incorrect. Closure properties are proven by separate theorems."
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
     }
   ]
 }
