@@ -1,5 +1,4 @@
 ### Contributors
-
 | SNo. |        Name        |          Email           |         Institute          |
 | :--: | :----------------: | :----------------------: | :------------------------: | 
 |  1   | Dr. Priyanka Kumar | k_priyanka@cb.amrita.edu | Amrita Vishwa Vidyapeetham |   
