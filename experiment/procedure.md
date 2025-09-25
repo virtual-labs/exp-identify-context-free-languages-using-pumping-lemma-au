@@ -1,4 +1,4 @@
-<h3>Procedure</h3>
+
 <h5>Step 1: Understand and Analyze the Theorem</h5>
 <p>Observe and carefully read the Pumping Lemma theorem to grasp its conditions and implications for context-free languages.</p>
 <img src="./images/step1.png" alt="Description of image">

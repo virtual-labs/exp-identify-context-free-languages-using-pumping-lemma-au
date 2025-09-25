@@ -1,4 +1,3 @@
-### Theory
 
 #### 1. Context-Free Grammar (CFG)
 

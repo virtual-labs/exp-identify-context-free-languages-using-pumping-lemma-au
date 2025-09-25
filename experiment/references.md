@@ -1,4 +1,4 @@
-### References
+
 
 [1] “Pumping lemma for context-free languages,” *Wikipedia*, Jul. 30, 2024.  
 [Online]. Available: https://en.wikipedia.org/wiki/Pumping_lemma_for_context-free_languages  
